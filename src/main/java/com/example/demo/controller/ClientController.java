@@ -1,16 +1,27 @@
 package com.example.demo.controller;
 
+import com.example.demo.ClientService;
 import com.example.demo.model.dto.ClientDto;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
 
 @RestController
 public class ClientController {
 
+    @Autowired
+    private ClientService clientService;
+
     @GetMapping("/ClientDto")
-    public ClientDto clientDto(@RequestParam(value = "name", defaultValue = "NN")String name) {
-        return new ClientDto(name);
+    public List<ClientDto> getAllClients() {
+        return clientService.getAllClients();
+    }
+
+    @PostMapping("/ClientDto")
+    public void addClient(@RequestBody ClientDto clientDto) {
+        clientService.addClient(clientDto);
     }
 
 }
