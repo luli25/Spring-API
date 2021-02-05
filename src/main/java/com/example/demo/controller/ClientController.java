@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.ClientService;
-import com.example.demo.model.dto.ClientDto;
+import com.example.demo.model.dto.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,14 +14,14 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
-    @GetMapping("/ClientDto")
-    public List<ClientDto> getAllClients() {
+    @GetMapping("/Client")
+    public List<Client> getAllClients() {
         return clientService.getAllClients();
     }
 
-    @PostMapping("/ClientDto")
-    public void addClient(@RequestBody ClientDto clientDto) {
-        clientService.addClient(clientDto);
+    @PostMapping("/Client")
+    public void addClient(@RequestBody Client client) {
+        clientService.addClient(client);
     }
 
 }

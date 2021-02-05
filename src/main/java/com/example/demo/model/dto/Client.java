@@ -1,19 +1,24 @@
 package com.example.demo.model.dto;
 
-import javax.persistence.Id;
 
-public class ClientDto {
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="Clients")
+public class Client {
 
     @Id
     private String name;
 
-    public ClientDto() {
+    public Client(){
+
     }
 
-    public ClientDto(String name) {
+    public Client(String name) {
         this.name = name;
     }
-
 
     public String getName() {
         return name;
@@ -25,7 +30,7 @@ public class ClientDto {
 
     @Override
     public String toString() {
-        return "ClientDto{" +
+        return "Client{" +
                 "name='" + name + '\'' +
                 '}';
     }
