@@ -12,12 +12,11 @@ public class Client {
     @Id
     private String name;
 
-    public Client(){
-
-    }
-
     public Client(String name) {
         this.name = name;
+    }
+
+    public Client() {
     }
 
     public String getName() {

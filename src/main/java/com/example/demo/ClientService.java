@@ -2,6 +2,7 @@ package com.example.demo;
 
 
 import com.example.demo.model.dto.Client;
+import com.example.demo.model.dto.ClientDto;
 import com.example.demo.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,15 +16,28 @@ public class ClientService {
     @Autowired
     private ClientRepository clientRepo;
 
-    public List<Client> getAllClients() {
-        List<Client> clientList = new ArrayList<>();
-        clientRepo.findAll().forEach(clientList::add);
-        return clientList;
+    // Entity to Dto
+    public ClientDto entityToDto(Client client) {
+        ClientDto clientDto = new ClientDto();
+        clientDto.setName(client.getName());
+        return clientDto;
     }
 
-    public void addClient(Client client) {
-        clientRepo.save(client);
+    // Dto to Entity
+    public Client dtoToEntity(ClientDto clientdto) {
+        Client client = new Client();
+        client.setName(clientdto.getName());
+        return client;
     }
 
+    public List<ClientDto> getAllClients() {
+        List<ClientDto> clients = new ArrayList<>();
+        clientRepo.findAll().forEach(clients::add);
+        return clients;
+    }
+
+    public void addClient(ClientDto clientDto) {
+        clientRepo.save(clientDto);
+    }
 
 }

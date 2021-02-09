@@ -1,10 +1,9 @@
 package com.example.demo.model.dto;
 
-import javax.persistence.Id;
+import java.io.Serializable;
 
-public class ClientDto {
+public class ClientDto implements Serializable {
 
-    @Id
     private String name;
 
     public ClientDto() {
@@ -13,7 +12,6 @@ public class ClientDto {
     public ClientDto(String name) {
         this.name = name;
     }
-
 
     public String getName() {
         return name;
