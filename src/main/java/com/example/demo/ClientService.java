@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ClientService {
@@ -23,21 +24,13 @@ public class ClientService {
         return clientDto;
     }
 
-    // Dto to Entity
-    public Client dtoToEntity(ClientDto clientdto) {
-        Client client = new Client();
-        client.setName(clientdto.getName());
-        return client;
-    }
-
     public List<ClientDto> getAllClients() {
-        List<ClientDto> clients = new ArrayList<>();
-        clientRepo.findAll().forEach(clients::add);
-        return clients;
+        return ((List<Client>)clientRepo.findAll()).stream().map(this::entityToDto)
+                .collect(Collectors.toList());
     }
 
-    public void addClient(ClientDto clientDto) {
-        clientRepo.save(clientDto);
+    public void addClient(Client client) {
+        clientRepo.save(client);
     }
 
 }
