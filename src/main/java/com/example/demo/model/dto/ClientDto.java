@@ -1,7 +1,13 @@
 package com.example.demo.model.dto;
 
-public class ClientDto {
+import java.io.Serializable;
+
+public class ClientDto implements Serializable {
+
     private String name;
+
+    public ClientDto() {
+    }
 
     public ClientDto(String name) {
         this.name = name;

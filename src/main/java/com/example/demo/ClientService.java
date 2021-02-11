@@ -1,25 +1,39 @@
 package com.example.demo;
 
+
+import com.example.demo.model.Client;
 import com.example.demo.model.dto.ClientDto;
+import com.example.demo.repositories.ClientRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ClientService {
 
-    private List<ClientDto> clients = new ArrayList<>(Arrays.asList(
-            new ClientDto("Marcos Rojo"),
-            new ClientDto("Pablo Perez")
-    ));
+    @Autowired
+    private final ClientRepository clientRepo;
+
+    public ClientService(ClientRepository clientRepo) {
+        this.clientRepo = clientRepo;
+    }
+
+    // Entity to Dto
+    public ClientDto entityToDto(Client client) {
+        ClientDto clientDto = new ClientDto();
+        clientDto.setName(client.getName());
+        return clientDto;
+    }
 
     public List<ClientDto> getAllClients() {
-        return clients;
+        return ((List<Client>)clientRepo.findAll()).stream().map(this::entityToDto)
+                .collect(Collectors.toList());
     }
 
-    public void addClient(ClientDto clientDto) {
-        clients.add(clientDto);
+    public void addClient(Client client) {
+        clientRepo.save(client);
     }
+
 }
