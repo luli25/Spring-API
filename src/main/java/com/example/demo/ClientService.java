@@ -5,6 +5,7 @@ import com.example.demo.model.dto.ClientDto;
 import com.example.demo.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.ResourceAccessException;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,8 +32,8 @@ public class ClientService {
                 .collect(Collectors.toList());
     }
 
-    public ClientDto getClient(String name) {
-        return entityToDto(clientRepo.findById(name).get());
+    public ClientDto findByName(String name) {
+        return entityToDto(clientRepo.findById(name).orElse(clientRepo.save(new Client(name))));
     }
 
     public void addClient(Client client) {

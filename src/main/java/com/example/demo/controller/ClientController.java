@@ -24,8 +24,8 @@ public class ClientController {
     }
 
     @GetMapping("/Client/{name}")
-    public ClientDto getClient(@PathVariable String name) {
-        return clientService.getClient(name);
+    public ClientDto findByName(@PathVariable String name) {
+        return clientService.findByName(name);
     }
 
     @PostMapping("/Client")
