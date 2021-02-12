@@ -1,6 +1,5 @@
 package com.example.demo;
 
-
 import com.example.demo.model.Client;
 import com.example.demo.model.dto.ClientDto;
 import com.example.demo.repositories.ClientRepository;
@@ -30,6 +29,10 @@ public class ClientService {
     public List<ClientDto> getAllClients() {
         return ((List<Client>)clientRepo.findAll()).stream().map(this::entityToDto)
                 .collect(Collectors.toList());
+    }
+
+    public ClientDto getClient(String name) {
+        return entityToDto(clientRepo.findById(name).get());
     }
 
     public void addClient(Client client) {
