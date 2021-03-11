@@ -2,17 +2,17 @@ package com.example.demo
 
 import com.example.demo.model.Client
 import com.example.demo.repositories.ClientRepository
+
 import org.springframework.boot.test.context.SpringBootTest
-import spock.lang.Shared
 import spock.lang.Specification
 
 
 @SpringBootTest
 class ClientServiceTest extends Specification {
 
-    ClientRepository repo = Mock(ClientRepository)
+    def repo = Mock(ClientRepository)
+    def ClientService = new ClientService(repo)
 
-    @Shared
     Client dummyClient = Mock(Client)
 
     def "should add a new client to the repository"() {
@@ -20,7 +20,7 @@ class ClientServiceTest extends Specification {
         dummyClient.setName("test")
 
         when:
-        repo.save(dummyClient)
+        ClientService.addClient(dummyClient)
 
         then:
         1 * repo.save(dummyClient)
@@ -32,10 +32,10 @@ class ClientServiceTest extends Specification {
         fakeClient.setName("nn")
 
         when:
-        repo.save(fakeClient)
+        ClientService.addClient(fakeClient)
 
         then:
-        repo.findById() >> "nn"
+        ClientService.findByName() >> "nn"
 
     }
 }
