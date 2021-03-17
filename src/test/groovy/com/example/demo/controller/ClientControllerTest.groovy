@@ -9,6 +9,7 @@ import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import spock.lang.Specification
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
@@ -20,8 +21,7 @@ class ClientControllerTest extends Specification {
     @Autowired
     private MockMvc mvc
 
-    @Autowired
-    private ClientService service = Stub(ClientService)
+    private ClientService service = Mock(ClientService)
 
     @Autowired
     private ClientController controller = Mock(ClientController)

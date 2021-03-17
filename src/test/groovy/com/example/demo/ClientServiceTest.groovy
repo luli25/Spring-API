@@ -13,13 +13,14 @@ class ClientServiceTest extends Specification {
 
     def "method getAllClients should return a list of clients"() {
         given:
-        repo.findAll() >> List.of(new Client())
+        repo.findAll() >> List.of(new Client("test"))
 
         when:
         def clients = ClientService.getAllClients()
 
         then:
         !clients.isEmpty()
+        clients.get(0).name == "test"
     }
 
     def "method findByName should return a client when a name is provided"() {
