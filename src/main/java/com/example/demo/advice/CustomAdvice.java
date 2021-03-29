@@ -9,7 +9,7 @@ import java.util.NoSuchElementException;
 
 @ControllerAdvice
 public class CustomAdvice {
-    @org.springframework.web.bind.annotation.ExceptionHandler(NoSuchElementException.class)
+    @ExceptionHandler(NoSuchElementException.class)
     public ResponseEntity<Object> exception(NoSuchElementException exception) {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
