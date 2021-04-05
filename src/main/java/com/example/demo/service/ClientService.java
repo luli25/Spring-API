@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.service;
 
 import com.example.demo.model.Client;
 import com.example.demo.model.dto.ClientDto;
@@ -24,6 +24,9 @@ public class ClientService {
     public ClientDto entityToDto(Client client) {
         ClientDto clientDto = new ClientDto();
         clientDto.setName(client.getName());
+        clientDto.setLastname(client.getLastname());
+        clientDto.setAge(client.getAge());
+        clientDto.setBirthday(client.getBirthday());
         return clientDto;
     }
 

@@ -1,6 +1,6 @@
 package com.example.demo.controller
 
-import com.example.demo.ClientService
+import com.example.demo.service.ClientService
 import com.example.demo.model.Client
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
