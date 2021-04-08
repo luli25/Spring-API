@@ -40,8 +40,8 @@ public class ClientService {
                 .orElseThrow(NoSuchElementException::new));
     }
 
-    public void addClient(Client client) {
-        clientRepo.save(client);
+    public ClientDto addClient(Client client) {
+        return entityToDto(clientRepo.save(client));
     }
 
 }
