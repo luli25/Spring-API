@@ -30,6 +30,16 @@ public class ClientService {
         return clientDto;
     }
 
+    // Dto to Entity
+    public Client toEntity(ClientDto clientDto) {
+        Client client = new Client();
+        client.setName(clientDto.getName());
+        client.setLastname(clientDto.getLastname());
+        client.setAge(clientDto.getAge());
+        client.setBirthday(clientDto.getBirthday());
+        return client;
+    }
+
     public List<ClientDto> getAllClients() {
         return ((List<Client>)clientRepo.findAll()).stream().map(this::entityToDto)
                 .collect(Collectors.toList());
@@ -40,8 +50,9 @@ public class ClientService {
                 .orElseThrow(NoSuchElementException::new));
     }
 
-    public ClientDto addClient(Client client) {
-        return entityToDto(clientRepo.save(client));
+    public Client addClient(ClientDto clientDto) {
+        Client client = toEntity(clientDto);
+        return clientRepo.save(client);
     }
 
 }

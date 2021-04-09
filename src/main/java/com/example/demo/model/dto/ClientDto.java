@@ -13,13 +13,6 @@ public class ClientDto implements Serializable {
     public ClientDto() {
     }
 
-    public ClientDto(String name, String lastname, int age, LocalDate birthday) {
-        this.name = name;
-        this.lastname = lastname;
-        this.age = age;
-        this.birthday = birthday;
-    }
-
     public String getName() {
         return name;
     }
