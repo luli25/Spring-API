@@ -2,6 +2,7 @@ package com.example.demo
 
 import com.example.demo.model.Client
 import com.example.demo.repositories.ClientRepository
+import com.example.demo.service.ClientService
 import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification
 

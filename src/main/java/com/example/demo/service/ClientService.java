@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.service;
 
 import com.example.demo.model.Client;
 import com.example.demo.model.dto.ClientDto;
@@ -24,7 +24,20 @@ public class ClientService {
     public ClientDto entityToDto(Client client) {
         ClientDto clientDto = new ClientDto();
         clientDto.setName(client.getName());
+        clientDto.setLastname(client.getLastname());
+        clientDto.setAge(client.getAge());
+        clientDto.setBirthday(client.getBirthday());
         return clientDto;
+    }
+
+    // Dto to Entity
+    public Client toEntity(ClientDto clientDto) {
+        Client client = new Client();
+        client.setName(clientDto.getName());
+        client.setLastname(clientDto.getLastname());
+        client.setAge(clientDto.getAge());
+        client.setBirthday(clientDto.getBirthday());
+        return client;
     }
 
     public List<ClientDto> getAllClients() {
@@ -37,8 +50,9 @@ public class ClientService {
                 .orElseThrow(NoSuchElementException::new));
     }
 
-    public void addClient(Client client) {
-        clientRepo.save(client);
+    public Client addClient(ClientDto clientDto) {
+        Client client = toEntity(clientDto);
+        return clientRepo.save(client);
     }
 
 }

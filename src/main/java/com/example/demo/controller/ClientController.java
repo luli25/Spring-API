@@ -1,10 +1,9 @@
 package com.example.demo.controller;
 
-import com.example.demo.ClientService;
-import com.example.demo.model.Client;
 import com.example.demo.model.dto.ClientDto;
+import com.example.demo.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,8 +29,8 @@ public class ClientController {
     }
 
     @PostMapping("/Client")
-    public void addClient(@RequestBody Client client) {
-        clientService.addClient(client);
+    public void addClient(@RequestBody @DateTimeFormat(pattern = "yyyy-MM-dd") ClientDto clientDto) {
+        clientService.addClient(clientDto);
     }
 
 }
