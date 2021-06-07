@@ -35,4 +35,15 @@ public class ClientController {
         clientService.addClient(clientDto);
     }
 
+    @PutMapping("Client/{name}")
+    public void updateClient(@PathVariable String name, @RequestBody @DateTimeFormat(pattern = "yyyy-MM-dd") ClientDto clientDto) {
+        clientService.updateClient(name, clientDto);
+    }
+
+    @DeleteMapping("Client/{name}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteClient(@PathVariable String name) {
+        clientService.deleteClient(name);
+    }
+
 }

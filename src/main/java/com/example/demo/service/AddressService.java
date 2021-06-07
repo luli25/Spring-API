@@ -30,4 +30,12 @@ public class AddressService {
     public void createAddress(Address address) {
         addressRepository.save(address);
     }
+
+    public Address updateAddress(int id, Address address) {
+        return addressRepository.save(address);
+    }
+
+    public void deleteAddress(int id) {
+        addressRepository.deleteById(id);
+    }
 }

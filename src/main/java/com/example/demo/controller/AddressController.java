@@ -34,4 +34,15 @@ public class AddressController {
     public void createAddress(@RequestBody Address address) {
         addressService.createAddress(address);
     }
+
+    @PutMapping(value = "/update/{id}")
+    public void updateAddress(@PathVariable("id") int id, @RequestBody Address address) {
+        addressService.updateAddress(id, address);
+    }
+
+    @DeleteMapping(value = "/delete/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteAddress(@PathVariable("id")int id) {
+        addressService.deleteAddress(id);
+    }
 }
