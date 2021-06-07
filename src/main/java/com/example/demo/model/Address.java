@@ -1,23 +1,18 @@
 package com.example.demo.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "client_address")
 public class Address {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private int number;
     private String street;
     private String city;
     private int zipcode;
 
-    public Address() {
-
-    }
+    public Address() {}
 
     public Address(int id, int number, String street, String city, int zipcode) {
         this.id = id;
