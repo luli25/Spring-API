@@ -4,6 +4,7 @@ import com.example.demo.model.dto.ClientDto;
 import com.example.demo.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,8 +30,20 @@ public class ClientController {
     }
 
     @PostMapping("/Client")
+    @ResponseStatus(HttpStatus.CREATED)
     public void addClient(@RequestBody @DateTimeFormat(pattern = "yyyy-MM-dd") ClientDto clientDto) {
         clientService.addClient(clientDto);
+    }
+
+    @PutMapping("Client/{name}")
+    public void updateClient(@PathVariable String name, @RequestBody @DateTimeFormat(pattern = "yyyy-MM-dd") ClientDto clientDto) {
+        clientService.updateClient(name, clientDto);
+    }
+
+    @DeleteMapping("Client/{name}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteClient(@PathVariable String name) {
+        clientService.deleteClient(name);
     }
 
 }

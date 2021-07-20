@@ -55,4 +55,13 @@ public class ClientService {
         return clientRepo.save(client);
     }
 
+    public Client updateClient(String name, ClientDto clientDto) {
+        Client client = toEntity(clientDto);
+        return clientRepo.save(client);
+    }
+
+    public void deleteClient(String name) {
+        clientRepo.deleteById(name);
+    }
+
 }

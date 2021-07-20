@@ -20,6 +20,13 @@ public class Client {
     public Client() {
     }
 
+    public Client(String name, String lastname, int age, LocalDate birthday) {
+        this.name = name;
+        this.lastname = lastname;
+        this.age = age;
+        this.birthday = birthday;
+    }
+
     public String getName() {
         return name;
     }
